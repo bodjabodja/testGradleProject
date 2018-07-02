@@ -1,0 +1,36 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'testGroup'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+task startSession << {
+        chant()
+}
+
+def chant() {
+    ant.echo(message: 'Repeat after me...0')
+}
+
+3.times {
+    task "yayGradle$it" << {
+            println 'Gradle rocks!'
+    }
+}
+
+yayGradle0.dependsOn startSession
+yayGradle2.dependsOn yayGradle1, yayGradle0
+task groupTherapy(dependsOn: yayGradle2)
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
