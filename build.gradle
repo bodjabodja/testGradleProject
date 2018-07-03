@@ -22,7 +22,7 @@ def chant() {
 
 3.times {
     task "yayGradle$it" << {
-            println 'Gradle rocks!'
+            println 'Gradle rocks ---work!'
     }
 }
 
