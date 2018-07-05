@@ -8,12 +8,22 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
-task startSession << {
+task startSession {
+    doLast {
         chant()
+    }
 }
 
 def chant() {
@@ -21,14 +31,21 @@ def chant() {
 }
 
 3.times {
-    task "yayGradle$it" << {
-            println 'Gradle rocks ---work!!'
+    task "yayGradle$it"  {
+        doLast{
+            println 'Gradle rocks ---work!!'}
     }
+}
+
+task (runHello, dependsOn: 'classes', type: JavaExec) {
+    main = 'HelloWorld'
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 yayGradle0.dependsOn startSession
 yayGradle2.dependsOn yayGradle1, yayGradle0
 task groupTherapy(dependsOn: yayGradle2)
+
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
