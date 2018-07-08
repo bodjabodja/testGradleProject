@@ -1,6 +1,8 @@
 plugins {
     id 'groovy'
     id 'java'
+    id 'war'
+    id 'org.gretty' version '2.2.0'
 }
 
 group 'testGroup'
@@ -38,7 +40,7 @@ def chant() {
 }
 
 task (runHello, dependsOn: 'classes', type: JavaExec) {
-    main = 'HelloWorld'
+    main = 'SomeClass'
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -48,6 +50,7 @@ task groupTherapy(dependsOn: yayGradle2)
 
 
 dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
