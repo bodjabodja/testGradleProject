@@ -19,7 +19,8 @@ sourceSets {
 }
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
+    jcenter()
 }
 
 task startSession {
